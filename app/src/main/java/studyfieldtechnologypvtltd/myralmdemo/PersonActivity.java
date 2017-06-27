@@ -7,10 +7,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
+import io.realm.Realm;
+import studyfieldtechnologypvtltd.myralmdemo.realm.RealmController;
 
 public class PersonActivity extends AppCompatActivity {
 
     private Button btnSaveData;
+    private EditText edtName;
+    private EditText edtEmail;
+    private EditText edtWebsite;
+    private EditText edtAge;
+    private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +38,40 @@ public class PersonActivity extends AppCompatActivity {
         });
 
 
+        try {
+            getSupportActionBar().show();
+            getSupportActionBar().setHomeButtonEnabled(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        edtName  =(EditText)findViewById(R.id.edtName);
+        edtEmail = (EditText)findViewById(R.id.edtEmail);
+        edtWebsite  =(EditText)findViewById(R.id.edtWebsite);
+        edtAge = (EditText)findViewById(R.id.edtAge);
+
+
+
+        //get realm instance
+        this.realm = RealmController.with(this).getRealm();
+
+
+
+
         btnSaveData = (Button)findViewById(R.id.btnSaveData);
+
+        btnSaveData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+
+            }
+        });
+
+
+
+
+
 
     }
 
