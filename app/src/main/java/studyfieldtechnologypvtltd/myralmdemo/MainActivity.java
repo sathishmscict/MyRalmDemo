@@ -1,6 +1,8 @@
 package studyfieldtechnologypvtltd.myralmdemo;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -34,14 +36,28 @@ public class MainActivity extends AppCompatActivity {
     private Realm realm;
     private LayoutInflater inflater;
     private BooksAdapter adapter;
+    private FloatingActionButton fab_person;
+    private Context context=this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        fab_person = (FloatingActionButton)findViewById(R.id.fab_person);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         recycler = (RecyclerView) findViewById(R.id.recycler);
+
+        fab_person.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context ,PersonActivity.class);
+                startActivity(intent);
+
+
+            }
+        });
 
         //get realm instance
         this.realm = RealmController.with(this).getRealm();

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="studyfieldtechnologypvtltd.myralmdemo.PersonActivity"
+    tools:showIn="@layout/activity_person">
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+
+            android:id="@+id/edtNameWrapper"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+
+            android:gravity="center|left">
+
+            <EditText
+                android:id="@+id/edtName"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.13"
+                android:background="@null"
+
+                android:gravity="center|left"
+                android:hint="Contact Person Name"
+                android:inputType="textCapWords"
+                android:paddingLeft="4dp"
+                android:singleLine="true">
+
+
+            </EditText>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+
+            android:id="@+id/edtEmailWrapper"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+
+            android:gravity="center|left">
+
+            <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.13"
+                android:background="@null"
+
+                android:gravity="center|left"
+                android:hint="Enter Email"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="4dp"
+                android:singleLine="true">
+
+
+            </EditText>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+
+            android:id="@+id/edtWebsiteWrapper"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+
+            android:gravity="center|left">
+
+            <EditText
+                android:id="@+id/edtWebsite"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.13"
+                android:background="@null"
+
+                android:gravity="center|left"
+                android:hint="Enter Website"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="4dp"
+                android:singleLine="true">
+
+
+            </EditText>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+
+            android:id="@+id/edtAgeWrapper"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+
+            android:gravity="center|left">
+
+            <EditText
+                android:id="@+id/edtAge"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.13"
+                android:background="@null"
+
+                android:gravity="center|left"
+                android:hint="Enter Age"
+                android:maxLength="3"
+                android:inputType="numberSigned"
+                android:paddingLeft="4dp"
+                android:singleLine="true">
+
+
+            </EditText>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnSaveData"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFFFFF"
+            android:text="Save Data"
+            tools:layout_editor_absoluteX="70dp"
+            tools:layout_editor_absoluteY="334dp" />
+
+
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
