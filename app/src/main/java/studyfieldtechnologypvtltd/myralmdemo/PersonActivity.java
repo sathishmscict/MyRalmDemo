@@ -306,6 +306,18 @@ public class PersonActivity extends AppCompatActivity {
                     public void onClick(View v) {
 
                         Toast.makeText(context, "Records Deleted", Toast.LENGTH_SHORT).show();
+
+                        realm.beginTransaction();
+                RealmResults<Person> per = realm.where(Person.class).findAll();
+                /*        Person pp = per.get(position);
+                        pp.deleteFromRealm();
+*/
+                        per.deleteFromRealm(position);
+                        realm.commitTransaction();
+
+
+                        FillDataOnRecylerView();
+
                     }
                 });
 
