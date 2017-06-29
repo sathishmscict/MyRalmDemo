@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,9 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,8 +19,6 @@ import java.util.ArrayList;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
-import studyfieldtechnologypvtltd.myralmdemo.adapters.BooksAdapter;
-import studyfieldtechnologypvtltd.myralmdemo.adapters.RealmBooksAdapter;
 import studyfieldtechnologypvtltd.myralmdemo.app.Prefs;
 import studyfieldtechnologypvtltd.myralmdemo.model.Book;
 import studyfieldtechnologypvtltd.myralmdemo.realm.RealmController;
@@ -35,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recycler;
     private Realm realm;
     private LayoutInflater inflater;
-    private BooksAdapter adapter;
+    //private BooksAdapter adapter;
     private FloatingActionButton fab_person;
     private Context context=this;
 
@@ -58,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        Intent intent = new Intent(context , PersonActivity.class);
+        startActivity(intent);
+        finish();
 
         //get realm instance
         this.realm = RealmController.with(this).getRealm();
@@ -114,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                                     realm.copyToRealm(book);
                                     realm.commitTransaction();
 
-                                    adapter.notifyDataSetChanged();
+                                   // adapter.notifyDataSetChanged();
 
                                     // scroll the recycler view to bottom
                                     recycler.scrollToPosition(RealmController.getInstance().getBooks().size() - 1);
@@ -134,12 +132,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void setRealmAdapter(RealmResults<Book> books) {
+    public void setRealmAdapter(RealmResults<Book> books)
+    {
 
-        RealmBooksAdapter realmAdapter = new RealmBooksAdapter(this.getApplicationContext(), books, true);
+      /*  RealmBooksAdapter realmAdapter = new RealmBooksAdapter(this.getApplicationContext(), books, true);
         // Set the data and tell the RecyclerView to draw
         adapter.setRealmAdapter(realmAdapter);
-        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();*/
     }
 
     private void setupRecycler() {
@@ -153,8 +152,8 @@ public class MainActivity extends AppCompatActivity {
         recycler.setLayoutManager(layoutManager);
 
         // create an empty adapter and add it to the recycler view
-        adapter = new BooksAdapter(this);
-        recycler.setAdapter(adapter);
+     /*   adapter = new BooksAdapter(this);
+        recycler.setAdapter(adapter);*/
     }
 
     private void setRealmData() {

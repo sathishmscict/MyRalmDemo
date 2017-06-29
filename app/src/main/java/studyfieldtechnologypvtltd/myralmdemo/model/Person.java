@@ -11,8 +11,20 @@ public class Person extends RealmObject {
 
     @PrimaryKey
     private long personid;
-    private String personName,personEmail,personWebsite;
+    private String personName, personEmail, personWebsite;
     private int personAge;
+
+    public Person() {
+
+    }
+
+    public Person(long personid, String personName, String personEmail, String personWebsite, int personAge) {
+        this.personid = personid;
+        this.personName = personName;
+        this.personEmail = personEmail;
+        this.personWebsite = personWebsite;
+        this.personAge = personAge;
+    }
 
     public long getPersonid() {
         return personid;

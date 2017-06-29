@@ -61,12 +61,12 @@ public class RealmController {
     }
 
     //clear all objects from Book.class
-    public void clearAll() {
+   /* public void clearAll() {
 
         realm.beginTransaction();
         realm.clear(Book.class);
         realm.commitTransaction();
-    }
+    }*/
 
     //find all objects in the Book.class
     public RealmResults<Book> getBooks() {
@@ -81,10 +81,10 @@ public class RealmController {
     }
 
     //check if Book.class is empty
-    public boolean hasBooks() {
+  /*  public boolean hasBooks() {
 
         return !realm.allObjects(Book.class).isEmpty();
-    }
+    }*/
 
     //query example
     public RealmResults<Book> queryedBooks() {

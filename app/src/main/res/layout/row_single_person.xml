@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_books"
+    style="@style/AppTheme.Card.Margins"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="studyfieldtechnologypvtltd.myralmdemo.PersonActivity"
-    tools:showIn="@layout/activity_person">
-
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
 
@@ -115,7 +106,7 @@
             android:gravity="center|left">
 
             <EditText
-                android:id="@+id/edtAge"
+                android:id="@+id/edtAge2"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_marginRight="20dp"
@@ -124,8 +115,8 @@
 
                 android:gravity="center|left"
                 android:hint="Enter Age"
-                android:maxLength="3"
                 android:inputType="numberSigned"
+                android:maxLength="3"
                 android:paddingLeft="4dp"
                 android:singleLine="true">
 
@@ -134,27 +125,36 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <Button
-            android:id="@+id/btnSaveData"
+
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:textColor="#FFFFFF"
-            android:text="Save Data"
-            tools:layout_editor_absoluteX="70dp"
-            tools:layout_editor_absoluteY="334dp" />
+            android:orientation="horizontal">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_persondata"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="8dp" />
+            <Button
+                android:id="@+id/btnEdit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:text="Edit Data"
+                android:textColor="#FFFFFF" />
 
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:text="Save Data"
+                android:textColor="#FFFFFF" />
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
 
+</android.support.v7.widget.CardView>
 
-
-</android.support.constraint.ConstraintLayout>
