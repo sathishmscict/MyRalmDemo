@@ -1,6 +1,7 @@
 package studyfieldtechnologypvtltd.myralmdemo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -45,6 +46,8 @@ public class PersonActivity extends AppCompatActivity {
     private ArrayList<Person> list_person = new ArrayList<Person>();
     private AdapterDisplayPersonDetails adapter;
     private String TAG = PersonActivity.class.getSimpleName();
+
+      long POSITION;
 
 
     @Override
@@ -146,23 +149,56 @@ public class PersonActivity extends AppCompatActivity {
 
                 if (isError == false) {
 
-                    realm.beginTransaction();
-                    Person person = new Person();
-                    person.setPersonid(realm.where(Person.class).findAll().size() + 1);
-                    person.setPersonAge(Integer.parseInt(edtAge.getText().toString()));
-                    person.setPersonEmail(edtEmail.getText().toString());
-                    person.setPersonWebsite(edtWebsite.getText().toString());
-                    person.setPersonName(edtName.getText().toString());
+                    if(btnSaveData.getText().toString().toLowerCase().equals("update data"))
+                    {
 
-                    realm.copyToRealm(person);
-                    realm.commitTransaction();
+                        RealmResults<Person> results = realm.where(Person.class).findAll();
 
-                    Toast.makeText(PersonActivity.this, "Person details has been added", Toast.LENGTH_SHORT).show();
 
-                    edtAge.setText("");
-                    edtName.setText("");
-                    edtWebsite.setText("");
-                    edtEmail.setText("");
+                        realm.beginTransaction();
+
+                        Toast.makeText(context, "Position  : "+POSITION, Toast.LENGTH_SHORT).show();
+                        results.get((int) POSITION).setPersonEmail(edtEmail.getText().toString());
+                        results.get((int) POSITION).setPersonName(edtName.getText().toString());
+                        results.get((int) POSITION).setPersonWebsite(edtWebsite.getText().toString());
+                        results.get((int) POSITION).setPersonAge(Integer.parseInt(edtAge.getText().toString()));
+
+                        realm.commitTransaction();
+
+                        Toast.makeText(PersonActivity.this, "Person details has been updated", Toast.LENGTH_SHORT).show();
+
+                        edtAge.setText("");
+                        edtName.setText("");
+                        edtWebsite.setText("");
+                        edtEmail.setText("");
+
+
+
+                    }
+                    else
+                    {
+                        realm.beginTransaction();
+                        Person person = new Person();
+                        person.setPersonid(realm.where(Person.class).findAll().size() + 1);
+                        person.setPersonAge(Integer.parseInt(edtAge.getText().toString()));
+                        person.setPersonEmail(edtEmail.getText().toString());
+                        person.setPersonWebsite(edtWebsite.getText().toString());
+                        person.setPersonName(edtName.getText().toString());
+
+                        realm.copyToRealm(person);
+                        realm.commitTransaction();
+
+                        Toast.makeText(PersonActivity.this, "Person details has been added", Toast.LENGTH_SHORT).show();
+
+                        edtAge.setText("");
+                        edtName.setText("");
+                        edtWebsite.setText("");
+                        edtEmail.setText("");
+
+
+                    }
+
+
 
                     // realm.refresh();
 
@@ -254,7 +290,7 @@ public class PersonActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(AdapterDisplayPersonDetails.MyViewHolder holder, int position) {
+        public void onBindViewHolder(AdapterDisplayPersonDetails.MyViewHolder holder, final int position) {
 
             try {
                 Person person = list_person.get(position);
@@ -279,6 +315,17 @@ public class PersonActivity extends AppCompatActivity {
                     public void onClick(View v) {
 
                         Toast.makeText(context, "Record Edited", Toast.LENGTH_SHORT).show();
+
+                        edtEmail.setText(list_person.get(position).getPersonEmail());
+                        edtWebsite.setText(list_person.get(position).getPersonWebsite());
+                        edtAge.setText(String.valueOf(list_person.get(position).getPersonAge()));
+                        edtName.setText(list_person.get(position).getPersonName());
+
+                        POSITION  =position;
+
+                        Toast.makeText(context, "Position Holder : "+POSITION, Toast.LENGTH_SHORT).show();
+
+                        btnSaveData.setText("Update Data");
                     }
                 });
             } catch (Exception e) {
