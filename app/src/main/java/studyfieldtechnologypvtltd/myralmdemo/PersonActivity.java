@@ -43,11 +43,12 @@ public class PersonActivity extends AppCompatActivity {
     private RecyclerView rv_persondata;
     private Context context = this;
 
-    private ArrayList<Person> list_person = new ArrayList<Person>();
+    //private ArrayList<Person> list_person = new ArrayList<Person>();
     private AdapterDisplayPersonDetails adapter;
     private String TAG = PersonActivity.class.getSimpleName();
 
       long POSITION;
+    private RealmResults<Person> personsData;
 
 
     @Override
@@ -224,26 +225,25 @@ public class PersonActivity extends AppCompatActivity {
 
         realm.beginTransaction();
 
-
-        RealmResults<Person> personsData = realm.where(Person.class).findAll();
+ personsData = realm.where(Person.class).findAll();
         //personsData.deleteAllFromRealm();
         realm.commitTransaction();
 
         Log.d(TAG, "Total " + personsData.size() + " Records Found in person master");
-        list_person.clear();
-        for (int i = 0; i < personsData.size(); i++) {
-            /*Person per = new Person();
+        //personsData.clear();
+       /* for (int i = 0; i < personsData.size(); i++) {
+            *//*Person per = new Person();
             per.setPersonid(personsData.get(i).getPersonid());
             per.setPersonAge(personsData.get(i).getPersonAge());
             per.setPersonName(personsData.get(i).getPersonName());
             per.setPersonWebsite(personsData.get(i).getPersonWebsite());
-            per.setPersonEmail(personsData.get(i).getPersonEmail());*/
+            per.setPersonEmail(personsData.get(i).getPersonEmail());*//*
 
             Person per = new Person(personsData.get(i).getPersonid(), personsData.get(i).getPersonName(), personsData.get(i).getPersonEmail(), personsData.get(i).getPersonWebsite(), personsData.get(i).getPersonAge());
 
 
             list_person.add(per);
-        }
+        }*/
         adapter = new AdapterDisplayPersonDetails();
         rv_persondata.setAdapter(adapter);
 
@@ -261,17 +261,17 @@ public class PersonActivity extends AppCompatActivity {
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
 
-            private final EditText edtNameH, edtEmailH, edtWebsiteH, edtAgeH;
+            private final EditText edtName, edtEmail, edtWebsite, edtAge;
             private final Button btnEdit;
             private final Button btnDelete;
 
             public MyViewHolder(View itemView) {
                 super(itemView);
 
-                edtNameH = (EditText) itemView.findViewById(R.id.edtName);
-                edtEmailH = (EditText) itemView.findViewById(R.id.edtEmail);
-                edtWebsiteH = (EditText) itemView.findViewById(R.id.edtWebsite);
-                edtAgeH = (EditText) itemView.findViewById(R.id.edtAge2);
+                edtName = (EditText) itemView.findViewById(R.id.edtName);
+                edtEmail = (EditText) itemView.findViewById(R.id.edtEmail);
+                edtWebsite = (EditText) itemView.findViewById(R.id.edtWebsite);
+                edtAge = (EditText) itemView.findViewById(R.id.edtAge2);
 
                 btnEdit = (Button) itemView.findViewById(R.id.btnEdit);
                 btnDelete = (Button) itemView.findViewById(R.id.btnDelete);
@@ -293,13 +293,13 @@ public class PersonActivity extends AppCompatActivity {
         public void onBindViewHolder(AdapterDisplayPersonDetails.MyViewHolder holder, final int position) {
 
             try {
-                Person person = list_person.get(position);
+                Person person = personsData.get(position);
                 Log.d(TAG, "Perosn Age : " + person.getPersonEmail().toString());
-                Log.d(TAG, "Perosn Age : " + list_person.get(position).getPersonAge());
-                holder.edtAgeH.setText(String.valueOf(list_person.get(position).getPersonAge()));
-                holder.edtEmailH.setText(list_person.get(position).getPersonEmail());
-                holder.edtNameH.setText(list_person.get(position).getPersonName());
-                holder.edtWebsiteH.setText(list_person.get(position).getPersonWebsite());
+                Log.d(TAG, "Perosn Age : " + personsData.get(position).getPersonAge());
+                holder.edtAge.setText(String.valueOf(personsData.get(position).getPersonAge()));
+                holder.edtEmail.setText(personsData.get(position).getPersonEmail());
+                holder.edtName.setText(personsData.get(position).getPersonName());
+                holder.edtWebsite.setText(personsData.get(position).getPersonWebsite());
 
                 holder.btnDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -328,10 +328,10 @@ public class PersonActivity extends AppCompatActivity {
 
                         Toast.makeText(context, "Record Edited", Toast.LENGTH_SHORT).show();
 
-                        edtEmail.setText(list_person.get(position).getPersonEmail());
-                        edtWebsite.setText(list_person.get(position).getPersonWebsite());
-                        edtAge.setText(String.valueOf(list_person.get(position).getPersonAge()));
-                        edtName.setText(list_person.get(position).getPersonName());
+                        edtEmail.setText(personsData.get(position).getPersonEmail());
+                        edtWebsite.setText(personsData.get(position).getPersonWebsite());
+                        edtAge.setText(String.valueOf(personsData.get(position).getPersonAge()));
+                        edtName.setText(personsData.get(position).getPersonName());
 
                         POSITION  =position;
 
@@ -349,7 +349,7 @@ public class PersonActivity extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
-            return list_person.size();
+            return personsData.size();
         }
     }
 }
